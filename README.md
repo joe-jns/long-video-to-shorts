@@ -32,6 +32,29 @@ Two content branches:
 - **Hook title**: top-center, no box, big bold with outline + shadow, one accent word in
   yellow (mark it in the title with `*asterisks*`), shown ~4s then it disappears.
 
+## Customization — `config.json`
+
+All look-and-feel lives in `config.json` (no code edits):
+
+```jsonc
+{
+  "caption_style": "word-pop",   // word-pop | capcut | clean | label | karaoke | one-word | boxed | bicolor
+  "accent_color": "#FFFF00",     // brand colour for the popped word + hook accent
+  "font": "assets/fonts/DejaVuSans-Bold.ttf",
+  "font_family": "DejaVu Sans",  // set to the font's real family name if you swap it
+  "hook_seconds": 4,             // how long the hook stays (2–6s)
+  "caption_pos_y": 1360,
+  "hook_pos_y": 175,
+  "safe_zone": { "top": 120, "bottom": 320, "left": 70, "right": 130 }
+}
+```
+
+- **8 caption styles**, switchable in config or per clip: `build_clip.sh --style capcut`.
+- **Your brand colour**: set `accent_color` (hex) — it drives both the captions and the hook.
+- **Any font**: drop a `.ttf` in `assets/fonts/`, set `font` + `font_family`.
+- **Platform-safe placement**: `safe_zone` keeps captions/hook clear of the TikTok/Reels
+  UI (right-side buttons, bottom bar); positions are auto-clamped inside it.
+
 ## Requirements
 
 - [Claude Code](https://claude.com/claude-code) (this is a skill)

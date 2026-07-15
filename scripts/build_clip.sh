@@ -11,17 +11,17 @@
 #   (the agent runs the embedded-captions skill on *_reframed.mp4, then hook_title.sh).
 set -euo pipefail
 PROJ="${1:?project dir}"; shift
-START=""; END=""; KIND="screen"; TITLE=""; HOOK="true"; FACE_CX="0.5"; CAPMODE="ass"; OUT=""
+START=""; END=""; KIND="screen"; TITLE=""; HOOK="true"; FACE_CX="0.5"; CAPMODE="ass"; OUT=""; STYLE=""
 while [ $# -gt 0 ]; do case "$1" in
   --start) START="$2";shift 2;; --end) END="$2";shift 2;; --kind) KIND="$2";shift 2;;
   --title) TITLE="$2";shift 2;; --hook) HOOK="$2";shift 2;; --face-cx) FACE_CX="$2";shift 2;;
-  --caption-mode) CAPMODE="$2";shift 2;; --out) OUT="$2";shift 2;;
+  --caption-mode) CAPMODE="$2";shift 2;; --style) STYLE="$2";shift 2;; --out) OUT="$2";shift 2;;
   *) echo "unknown arg: $1"; exit 2;; esac; done
 [ -n "$START" ] && [ -n "$END" ] && [ -n "$OUT" ] || { echo "need --start --end --out"; exit 2; }
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SRC="$PROJ/work/source.mp4"; TR="$PROJ/work/transcript.json"
-FONT="$(ls "$HERE/../assets/fonts/"*.ttf | head -1)"
+FONT="$(node "$HERE/lib_config.cjs" font_abs)"   # font path from config.json
 mkdir -p "$(dirname "$OUT")"
 OUT_DIR="$(cd "$(dirname "$OUT")" && pwd)"; OUT_ABS="$OUT_DIR/$(basename "$OUT")"
 TMP="$PROJ/work/_clip_$$"; mkdir -p "$TMP"
@@ -51,7 +51,7 @@ fi
 if [ "$CAPMODE" = "none" ]; then
   cp "$TMP/reframed.mp4" "$TMP/capped.mp4"
 else
-  bash "$HERE/captions_burn.sh" "$TMP/reframed.mp4" "$TR" "$S0" "$S1" "$TMP/capped.mp4" "$FONT" 16 >/dev/null
+  bash "$HERE/captions_burn.sh" "$TMP/reframed.mp4" "$TR" "$S0" "$S1" "$TMP/capped.mp4" "$FONT" "" "$STYLE" >/dev/null
 fi
 
 # hook stage

@@ -18,15 +18,29 @@ words inside `[start,end]`, rebases them to clip-relative time, and emits the
 **scales up (122%) and turns yellow** while spoken. Consecutive captions never
 overlap (each state ends exactly when the next begins).
 
-## Style (edit in `ass_from_words.cjs`)
+## Styles (config-driven — `config.json` + `--style`)
 
-- Font family **DejaVu Sans**, Bold, size **84**, white fill, black outline 6, shadow 3.
-- Active-word colour yellow `&H0000FFFF`; active word `\fscx122\fscy122`.
-- **Fixed vertical anchor** `{\an5\pos(540,1360)}` on every caption → no vertical
-  jump, and single-line packing (`packByChars`, budget ~16, max 3 words) → never
-  wraps. These two together are what keep the captions rock-steady.
-- To reposition, change the `\pos(540, Y)` Y value. To change accent colour, edit
-  `YELLOW`. To allow longer lines, raise the `maxChars` arg from `build_clip.sh`.
+`ass_from_words.cjs` ships **8 styles**; pick one in `config.json` (`caption_style`)
+or override per clip with `build_clip.sh --style <name>`:
+
+| style | look |
+|---|---|
+| `word-pop` (default) | active word scales 122% + accent colour, single line, fixed anchor |
+| `capcut` | UPPERCASE, active word in accent colour, thick outline |
+| `clean` | title-case, active word accent, thin outline |
+| `label` | words on a tight dark box, active word accent |
+| `karaoke` | words fill to the accent colour as spoken |
+| `one-word` | one giant word at a time |
+| `boxed` | one word at a time in a solid accent box |
+| `bicolor` | words alternate white / accent |
+
+Colour, font, position and safe margins all come from `config.json`:
+`accent_color`, `font`/`font_family`, `caption_pos_y`, `caption_max_chars`, `safe_zone`.
+
+**Why the default is steady:** every caption is a single line (`packByChars`, budget
+`caption_max_chars`) anchored at a fixed point (`{\an5\pos(540,caption_pos_y)}`), so it
+never wraps and never jumps. Positions are clamped inside `safe_zone` (bottom/right
+reserved for the TikTok/Reels UI).
 
 ## Hook banner (`hook_title.sh` → `hook_ass.cjs`)
 

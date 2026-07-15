@@ -94,8 +94,18 @@ fabricated words over silence.
 - Hook banner ON by default (per-clip `--hook false` to disable). It is **centered**,
   shows for **~4s then disappears**, and colours one accent word — mark it in the title
   with `*asterisks*`, e.g. `--title "Feeling awkward is *normal*"`.
-- Captions are **word-pop** (active word scales + turns yellow, single line, fixed
-  vertical anchor — no wrap/jump). See `references/captions-gameplay.md`.
+- Captions default to **word-pop** (active word scales + turns the accent colour, single
+  line, fixed vertical anchor — no wrap/jump). See `references/captions-gameplay.md`.
+
+## Customization — `config.json`
+
+All look-and-feel lives in `config.json` at the skill root (no code edits needed):
+
+- **`caption_style`** — one of `word-pop | capcut | clean | label | karaoke | one-word | boxed | bicolor`. Override per clip with `build_clip.sh --style <name>`.
+- **`accent_color` / `hook_accent_color`** — hex (e.g. your brand colour). Drives the popped word and the hook accent word.
+- **`font` / `font_family`** — point `font` at any `.ttf` in `assets/fonts/` and set `font_family` to that font's real family name (what libass matches on).
+- **`hook_seconds`** — how long the hook stays (2–6s).
+- **`caption_pos_y` / `hook_pos_y`** and **`safe_zone`** — keep captions/hook inside the platform-safe area (bottom/right reserved for TikTok/Reels UI). Positions are auto-clamped into the safe zone.
 
 ## Worked example
 
