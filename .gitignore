@@ -1,0 +1,22 @@
+# generated fixtures / media
+_fixtures/*.mp4
+_fixtures/*.wav
+_fixtures/*.png
+_fixtures/transcript_sample.json
+_fixtures/_t_*
+
+# per-job working dirs / outputs
+work/
+shorts/
+styles/
+*.mp4
+*.wav
+
+# node / python
+node_modules/
+__pycache__/
+*.pyc
+
+# os
+.DS_Store
+Thumbs.db
