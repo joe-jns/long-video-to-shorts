@@ -106,6 +106,7 @@ All look-and-feel lives in `config.json` at the skill root (no code edits needed
 - **`font` / `font_family`** — point `font` at any `.ttf` in `assets/fonts/` and set `font_family` to that font's real family name (what libass matches on).
 - **`hook_seconds`** — how long the hook stays (2–6s).
 - **`caption_pos_y` / `hook_pos_y`** and **`safe_zone`** — keep captions/hook inside the platform-safe area (bottom/right reserved for TikTok/Reels UI). Positions are auto-clamped into the safe zone.
+- **`max_download_height`** — cap for YouTube downloads (default **1080** — plenty for TikTok/Insta/Shorts; never pulls 4K). Bump to 1440 only for sharper face-cam crops.
 
 ## Worked example
 

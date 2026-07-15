@@ -42,7 +42,8 @@ All look-and-feel lives in `config.json` (no code edits):
   "accent_color": "#FFFF00",     // brand colour for the popped word + hook accent
   "font": "assets/fonts/DejaVuSans-Bold.ttf",
   "font_family": "DejaVu Sans",  // set to the font's real family name if you swap it
-  "hook_seconds": 4,             // how long the hook stays (2–6s)
+  "hook_seconds": 4,
+  "max_download_height": 1080,  // cap YouTube downloads (1080 is plenty; never pulls 4K)             // how long the hook stays (2–6s)
   "caption_pos_y": 1360,
   "hook_pos_y": 175,
   "safe_zone": { "top": 120, "bottom": 320, "left": 70, "right": 130 }

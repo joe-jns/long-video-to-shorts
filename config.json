@@ -17,6 +17,9 @@
   "hook_seconds": 4,
   "hook_pos_y": 175,
 
+  "max_download_height": 1080,
+  "_max_download_height_note": "Cap for YouTube downloads. 1080 is plenty for TikTok/Insta/Shorts (they recompress anyway). Bump to 1440 only if you want sharper face-cam crops (the crop is a vertical slice of the frame, so a taller source = crisper vertical).",
+
   "safe_zone": {
     "top": 120,
     "bottom": 320,

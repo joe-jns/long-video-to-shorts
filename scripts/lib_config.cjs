@@ -21,6 +21,7 @@ function load() {
     caption_pos_y:   raw.caption_pos_y   || 1360,
     hook_seconds:    raw.hook_seconds    || 4,
     hook_pos_y:      raw.hook_pos_y      || 175,
+    max_download_height: raw.max_download_height || 1080,
     safe,
   };
   // clamp caption/hook vertical positions inside the safe zone
