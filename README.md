@@ -55,6 +55,15 @@ All look-and-feel lives in `config.json` (no code edits):
 - **Platform-safe placement**: `safe_zone` keeps captions/hook clear of the TikTok/Reels
   UI (right-side buttons, bottom bar); positions are auto-clamped inside it.
 
+### Interactive configurator (optional companion command)
+
+Instead of editing `config.json` by hand, install the companion skill in
+[`long-video-to-shorts-config/`](long-video-to-shorts-config/) — copy that folder to
+`~/.claude/skills/long-video-to-shorts-config/` and run **`/long-video-to-shorts-config`**.
+It asks you (keep-or-change) for the caption style, brand accent colour, font (with an
+option to download a short-friendly Google font), and hook duration, then writes
+`config.json` for you and can render a quick preview.
+
 ## Requirements
 
 - [Claude Code](https://claude.com/claude-code) (this is a skill)
